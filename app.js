@@ -11,7 +11,7 @@ const celebrateErrors = require('celebrate').errors;
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 //основные подключения
-mongoose.connect('mongodb://localhost:27017/mestodb', {
+mongoose.connect('mongodb://localhost:27017/news-api', {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
