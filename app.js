@@ -4,7 +4,7 @@ require('dotenv').config();
 const mongoose = require('mongoose');
 const indexRouter = require('./routers/index');
 const { error, someNotFound } = require('./routers/notFound');
-const { PORT = 8000 } = process.env;
+const { PORT = 3000 } = process.env;
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const celebrateErrors = require('celebrate').errors;
