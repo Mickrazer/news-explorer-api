@@ -5,13 +5,14 @@ const mongoose = require('mongoose');
 const indexRouter = require('./routers/index');
 const { error, someNotFound } = require('./routers/notFound');
 const { PORT = 3000 } = process.env;
+const { NODE_ENV, DATABASE } = process.env;
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const celebrateErrors = require('celebrate').errors;
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 //основные подключения
-mongoose.connect('mongodb://localhost:27017/news-api', {
+mongoose.connect(NODE_ENV === 'production' ? DATABASE : 'mongodb://localhost:27017/news-api', {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
