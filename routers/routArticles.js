@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { articlesValidation } = require('../moduls/validation');
-const { getArticles, addArticle, deleteArticle, } = require('../controllers/articles');
+const { getArticles, addArticle, deleteArticle } = require('../controllers/articles');
 
 router.get('/', getArticles);
 router.post('/', articlesValidation, addArticle);

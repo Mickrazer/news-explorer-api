@@ -10,8 +10,12 @@ const getArticles = (req, res, next) => {
 };
 const addArticle = (req, res, next) => {
   const owner = req.user._id;
-  const { keyword, title, text, date, source, link, image } = req.body;
-  Article.create({ keyword, title, text, date, source, link, image, owner })
+  const {
+    keyword, title, text, date, source, link, image,
+  } = req.body;
+  Article.create({
+    keyword, title, text, date, source, link, image, owner,
+  })
     .then(checkNull)
     .then((article) => res.status(201).send(article))
     .catch((e) => {
@@ -33,7 +37,7 @@ const deleteArticle = (req, res, next) => {
           .then((trueArticle) => res.send(trueArticle))
           .catch((err) => next(err));
       }
-      throw new Error('У вас недостаточно прав для данного действия');;
+      throw new Error('У вас недостаточно прав для данного действия');
     })
     .catch((err) => next(err));
 };

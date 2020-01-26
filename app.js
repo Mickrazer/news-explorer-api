@@ -1,17 +1,18 @@
 const express = require('express');
+
 const app = express();
 require('dotenv').config();
 const mongoose = require('mongoose');
-const indexRouter = require('./routers/index');
-const { error, someNotFound } = require('./routers/notFound');
+
 const { PORT = 3000 } = process.env;
 const { NODE_ENV, DATABASE } = process.env;
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const celebrateErrors = require('celebrate').errors;
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const indexRouter = require('./routers/index');
+const { error, someNotFound } = require('./routers/notFound');
 
-//основные подключения
 mongoose.connect(NODE_ENV === 'production' ? DATABASE : 'mongodb://localhost:27017/news-api', {
   useNewUrlParser: true,
   useCreateIndex: true,
@@ -34,5 +35,5 @@ app.use('*', error);
 app.use('*', someNotFound);
 
 app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}`)
+  console.log(`App listening on port ${PORT}`);
 });

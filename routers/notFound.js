@@ -1,5 +1,5 @@
 const error = (err, req, res, next) => {
-  if(!err.message) {
+  if (!err.message) {
     next();
   }
   const notFound = err.message.indexOf('not found');

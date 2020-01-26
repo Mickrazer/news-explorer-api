@@ -27,7 +27,7 @@ const articleSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(u) {
-      return validator.isURL(u);
+        return validator.isURL(u);
       },
       message: (props) => `'${props.value}' Здесь должна быть ссылка!`,
     },
@@ -37,7 +37,7 @@ const articleSchema = new mongoose.Schema({
     required: true,
     validate: {
       validator(u) {
-      return validator.isURL(u);
+        return validator.isURL(u);
       },
       message: (props) => `'${props.value}' Здесь должна быть ссылка!`,
     },
