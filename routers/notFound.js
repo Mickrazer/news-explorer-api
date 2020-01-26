@@ -1,7 +1,8 @@
 const { ErrorNotFound } = require('../moduls/errors');
 
 const someNotFound = (req, res, next) => {
-  next(new ErrorNotFound());
+  res.set('Content-Type', 'application/json');
+  res.status(404).send('{ "message": "Ресурс не найден" }');
 };
 
 const error = (err, req, res, next) => {
