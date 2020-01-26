@@ -19,4 +19,13 @@ class ErrorBadRequest extends Error {
   }
 }
 
-module.exports = { ErrorNotFound, ErrorUnauthorized, ErrorBadRequest };
+class ErrorForbidden extends Error {
+  constructor(message = 'У вас недостаточно прав') {
+    super(message);
+    this.statusCode = 403;
+  }
+}
+
+module.exports = {
+  ErrorNotFound, ErrorUnauthorized, ErrorBadRequest, ErrorForbidden,
+};

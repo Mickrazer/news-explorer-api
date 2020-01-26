@@ -1,6 +1,6 @@
 const Article = require('../models/article');
 const checkNull = require('../moduls/checkNull');
-const { ErrorBadRequest } = require('../moduls/errors');
+const { ErrorBadRequest, ErrorForbidden } = require('../moduls/errors');
 
 const getArticles = (req, res, next) => {
   Article.find({ owner: req.user._id })
@@ -37,7 +37,7 @@ const deleteArticle = (req, res, next) => {
           .then((trueArticle) => res.send(trueArticle))
           .catch((err) => next(err));
       }
-      throw new Error('У вас недостаточно прав для данного действия');
+      throw new ErrorForbidden();
     })
     .catch((err) => next(err));
 };
