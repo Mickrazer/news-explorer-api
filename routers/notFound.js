@@ -11,7 +11,7 @@ const error = (err, req, res, next) => {
     someError = new ErrorNotFound();
   }
   const { statusCode = 500, message } = someError;
-  res.status(statusCode).send({ message, statusCode });
+  res.status(statusCode).send({ message });
   return next();
 };
 
