@@ -1,6 +1,6 @@
 const { ErrorNotFound } = require('../moduls/errors');
 
-const someNotFound = (req, res, next) => {
+const someNotFound = (req, res) => {
   res.set('Content-Type', 'application/json');
   res.status(404).send('{ "message": "Ресурс не найден" }');
 };
