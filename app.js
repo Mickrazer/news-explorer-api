@@ -19,7 +19,14 @@ mongoose.connect(NODE_ENV === 'production' ? DATABASE : 'mongodb://localhost:270
   useFindAndModify: false,
 });
 app.use(cors({
-  orirgin: ['http://mestoekbmik.site', 'https://mestoekbmik.site', 'http://www.mestoekbmik.site', 'https://www.mestoekbmik.site'],
+  origin: [
+  'http://mestoekbmik.site',
+  'https://mestoekbmik.site',
+  'http://www.mestoekbmik.site',
+  'https://www.mestoekbmik.site',
+  'https://mickrazer.github.io',
+  'http://mickrazer.github.io',
+  'http://localhost:8080'],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
   preflightContinue: false,
