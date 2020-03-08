@@ -21,7 +21,7 @@ const articlesValidation = celebrate({
     title: Joi.string().required(),
     text: Joi.string().required(),
     date: Joi.date().iso().required(),
-    sour: Joi.string().required(),
+    source: Joi.string().required(),
     link: Joi.string().required().uri().regex(/^https?:\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-]){1,}?$/),
     image: Joi.string().required().uri().regex(/^https?:\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:/~+#-]*[\w@?^=%&/~+#-]){1,}?$/),
   }),
