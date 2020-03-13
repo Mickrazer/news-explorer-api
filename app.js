@@ -38,7 +38,7 @@ app.use(requestLogger);
 app.use(indexRouter);
 app.use(errorLogger);
 app.use(celebrateErrors());
-app.use('*', error);
+app.use(error);
 app.use('*', someNotFound);
 
 app.listen(PORT, () => {

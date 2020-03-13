@@ -5,15 +5,13 @@ const someNotFound = (req, res, next) => {
 };
 
 const error = (err, req, res, next) => {
-  if(!err.message) {
-    next();
+  let comingError = err;
+  if (/Cast to [a-z]+ failed/i.test(comingError.message)) {
+    comingError = new ErrorNotFound();
   }
-  const notFound = err.message.indexOf('not found');
-  const failedError = err.message.indexOf('Cast to ObjectId failed');
-  if (notFound || failedError) {
-    return res.status(404).json({ error: err.message });
-  }
-  return res.status(500).json({ error: err.message });
+  const { statusCode = 500, message } = comingError;
+  res.status(statusCode).send({ message, statusCode });
+  return next();
 };
 
 module.exports = { error, someNotFound };
