@@ -13,7 +13,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const indexRouter = require('./routers/index');
 const { error, someNotFound } = require('./routers/notFound');
 
-mongoose.connect(NODE_ENV === 'production' ? DATABASE : 'mongodb://localhost:27017/news-api', {
+mongoose.connect(NODE_ENV === 'production' ? DATABASE : 'mongodb://localhost:27017/newsapi', {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
