@@ -8,7 +8,6 @@ const articleSchema = new mongoose.Schema({
   },
   title: {
     type: String,
-    unique: true,
     required: true,
   },
   text: {
@@ -21,6 +20,7 @@ const articleSchema = new mongoose.Schema({
   },
   source: {
     type: String,
+    unique: false,
     required: true,
   },
   link: {
