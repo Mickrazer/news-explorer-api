@@ -38,8 +38,8 @@ app.use(requestLogger);
 app.use(indexRouter);
 app.use(errorLogger);
 app.use(celebrateErrors());
-app.use(error);
 app.use('*', someNotFound);
+app.use(error);
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
