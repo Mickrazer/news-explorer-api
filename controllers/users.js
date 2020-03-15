@@ -5,7 +5,6 @@ const jwt = require('jsonwebtoken');
 const key = require('../moduls/key');
 const User = require('../models/user');
 const checkNull = require('../moduls/checkNull');
-const { ErrorBadRequest } = require('../moduls/errors');
 
 const getUser = (req, res, next) => {
   User.findById(req.user._id)
@@ -16,32 +15,17 @@ const getUser = (req, res, next) => {
 
 const createUser = (req, res, next) => {
   const { name, email, password } = req.body;
-  try {
-    if (password && password.length >= 8) {
-      return bcryptjs.hash(password, 10)
-        .then((hash) => User.create({ name, email, password: hash }))
-        .then(checkNull)
-        .then((user) => res.send({
-          name: user.name,
-          email: user.email,
-        }))
-        .catch((e) => {
-          let err;
-          if(/validation failed/.test(e.message)){
-            err = new ErrorBadRequest(e.message);
-          } else if (/duplicate key/.test(e.message)) {
-            err = new ErrorBadRequest('Пользователь с таким e-mail уже существует!')
-          } else {
-            err = e;
-          }
-          return next(err);
-        });
-    }
-    throw new ErrorBadRequest('Необходимо ввести пароль');
-  } catch (e) {
-    res.send({ message: e.message });
-    return next(e);
+  if (password) {
+    return bcryptjs.hash(password, 10)
+      .then((hash) => User.create({ name, email, password: hash }))
+      .then(checkNull)
+      .then((user) => res.send({
+        name: user.name,
+        email: user.email,
+      }))
+      .catch((err) => next(err));
   }
+  return res.send({ error: 'Неверные e-mail или пароль' });
 };
 
 const login = (req, res) => {
@@ -59,8 +43,7 @@ const login = (req, res) => {
         });
     })
     .catch((err) => {
-      res.send({ message: err.message });
-      next(err);
+      res.send({err.message})
     });
 };
 
