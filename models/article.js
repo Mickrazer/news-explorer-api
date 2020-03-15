@@ -20,7 +20,6 @@ const articleSchema = new mongoose.Schema({
   },
   source: {
     type: String,
-    unique: false,
     required: true,
   },
   link: {

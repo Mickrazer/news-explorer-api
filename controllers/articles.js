@@ -17,11 +17,13 @@ const addArticle = (req, res, next) => {
     keyword, title, text, date, source, link, image, owner,
   })
     .then(checkNull)
-    .then((article) => res.status(201).send(article))
+    .then((article) => res.status(201).send(article._id))
     .catch((e) => {
       let err;
       if (/validation failed/.test(e.message)) {
         err = new ErrorBadRequest(e.message);
+      } else if (/duplicate key error/i.test(e.message)){
+        err = new ErrorBadRequest('Вы пытаетесь дублировать материал');
       } else {
         err = e;
       }
@@ -34,7 +36,7 @@ const deleteArticle = (req, res, next) => {
     .then((article) => {
       if (req.user._id === article.owner.toString()) {
         return Article.findByIdAndRemove(req.params.articleId)
-          .then((trueArticle) => res.send(trueArticle))
+          .then(() => res.send({ message: 'Удалено', statusCode: 200 }))
           .catch((err) => next(err));
       }
       throw new ErrorForbidden();
