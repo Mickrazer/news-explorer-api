@@ -57,7 +57,9 @@ const login = (req, res) => {
           email: user.email,
         });
     })
-    .catch((err) => next(e));
+    .catch((err) => {
+      res.send({ message: err.message });
+    });
 };
 
 const logout = (req, res) => {
