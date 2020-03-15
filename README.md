@@ -6,7 +6,7 @@
 
 Публичный IP: 84.201.164.115
 
-http://mestoekbmik.site, https://mestoekbmik.site, http://www.mestoekbmik.site, https://www.mestoekbmik.site
+api.mestoekbmik.site,
 
 Возможные запросы:
 
