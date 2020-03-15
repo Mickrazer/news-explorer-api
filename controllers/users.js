@@ -39,6 +39,7 @@ const createUser = (req, res, next) => {
     }
     throw new ErrorBadRequest('Необходимо ввести пароль');
   } catch (e) {
+    res.send({ message: e.message });
     return next(e);
   }
 };
